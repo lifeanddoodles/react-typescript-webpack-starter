@@ -1,4 +1,4 @@
-# React Boilerplate with Webpack, Typescript and Sass
+# React + Typescript + Sass Boilerplate using Webpack
 
 ## Download the Boilerplate
 
@@ -6,7 +6,7 @@
 
 ## Install Dependencies
 
-Go to your project folder, for example: `cd app-name`\
+Go to your project folder, for example: `cd app-name`  
 `npm install`
 
 ## Run Dev Server
@@ -19,7 +19,9 @@ Go to your project folder, for example: `cd app-name`\
 
 ## Env Variables
 
-With Webpack we can define our own variables for use in the application.
+With Webpack we can define our own variables.
+
+### Define Variables in Development
 
 In `/webpack/webpack.dev.js`, at the top add:
 
@@ -38,7 +40,9 @@ new webpack.DefinePlugin({
 ],
 ```
 
-In `/webpack/webpack.prod.js` at the top add:
+### Define Variables in Production
+
+In `/webpack/webpack.prod.js`, at the top add:
 
 ```javascript
 const webpack = require('webpack')
@@ -55,10 +59,8 @@ new webpack.DefinePlugin({
 ],
 ```
 
-To use it in a component on the front end just add:
+**Note:** if you use the same value for both environments just make the corresponding changes to the `/webpack/webpack.common.js` file.
 
-```javascript
-{
-  process.env.yourvariablename
-}
-```
+### Use Env Variables
+
+To use in the application just add `{ process.env.yourvariablename }` to the part where it's needed.
