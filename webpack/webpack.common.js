@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
@@ -28,6 +29,9 @@ module.exports = {
       {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
         type: 'asset/resource',
+        // generator: {
+        //   filename: 'images/[hash][ext][query]',
+        // },
       },
       {
         test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
@@ -36,16 +40,24 @@ module.exports = {
     ],
   },
   output: {
-    path: path.resolve(__dirname, '..', './build'),
+    path: path.resolve(__dirname, '..', 'build'),
     filename: 'bundle.js',
+    assetModuleFilename: 'assets/[name][ext][query]',
+    clean: true,
     publicPath: '/',
   },
   devServer: {
     historyApiFallback: true,
+    static: {
+      directory: path.join(__dirname, 'build'),
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '..', './src/index.html'),
+      template: path.resolve(__dirname, '..', './public/index.html'),
+    }),
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
     }),
   ],
   stats: 'errors-only',
