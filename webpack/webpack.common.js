@@ -46,12 +46,6 @@ module.exports = {
     clean: true,
     publicPath: '/',
   },
-  devServer: {
-    historyApiFallback: true,
-    static: {
-      directory: path.join(__dirname, 'build'),
-    },
-  },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '..', './public/index.html'),
